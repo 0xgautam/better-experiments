@@ -2,7 +2,7 @@
 
 > Developer-first A/B testing framework with built-in dashboard
 
-[![npm version](https://badge.fury.io/js/better-ab.svg)](https://badge.fury.io/js/better-experiments)
+[![npm version](https://badge.fury.io/js/better-experiments.svg)](https://badge.fury.io/js/better-experiments)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg)](https://www.typescriptlang.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
