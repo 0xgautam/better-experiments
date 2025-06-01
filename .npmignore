@@ -1,0 +1,20 @@
+# Source files
+src/
+examples/
+tests/
+
+# Development files
+.eslintrc.js
+tsconfig.json
+tsconfig.build.json
+rollup.config.js
+vitest.config.ts
+
+# Documentation
+*.md
+!README.md
+
+# Development dependencies
+node_modules/
+.git/
+.github/
