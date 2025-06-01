@@ -22,4 +22,4 @@ export type {
 } from "./types";
 
 // Utilities
-export { createUserHash, djb2Hash, normalizeHash } from "./utils/hash";
+export { createUserHash } from "./utils/hash";

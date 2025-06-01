@@ -367,22 +367,34 @@ export class BetterExperiments {
     variants: VariantValue[],
     weights: number[]
   ): VariantValue {
-    // Create deterministic hash from testId + userId
-    const hash = createUserHash(testId + userId);
+    // Ensure variants and weights are not empty and have the same length
+    if (variants.length === 0 || variants.length !== weights.length) {
+      // Throw an error, or return a default/control variant
+      console.error("Variants and weights mismatch or empty.");
+      throw new Error(
+        "Variants and weights must be non-empty and have the same length."
+      );
+    }
 
-    // Convert to number between 0 and 1
-    const hashNumber = parseInt(hash.substring(0, 8), 16) / 0xffffffff;
+    // Create deterministic numeric hash from testId + userId
+    const numericHash = createUserHash(testId + userId);
+
+    // Convert to number between 0 and 1 (inclusive of 0, potentially inclusive of 1)
+    // 0xffffffff is 2^32 - 1, the maximum value for an unsigned 32-bit integer.
+    const hashNumber = numericHash / 0xffffffff;
 
     // Use weights to determine variant
     let cumulativeWeight = 0;
     for (let i = 0; i < variants.length; i++) {
-      cumulativeWeight += weights[i]!;
+      cumulativeWeight += weights[i]!; // Assumes weights[i] is defined
       if (hashNumber <= cumulativeWeight) {
-        return variants[i]!;
+        return variants[i]!; // Assumes variants[i] is defined
       }
     }
 
-    // Fallback to last variant
+    // Fallback to last variant.
+    // This should ideally be hit only in edge cases like floating point inaccuracies
+    // or if hashNumber is exactly 1.0 and the last variant's cumulative weight is 1.0.
     return variants[variants.length - 1]!;
   }
 

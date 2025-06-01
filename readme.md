@@ -388,7 +388,7 @@ await test.convert("conversion"); // ✅ Always correct
 
 ## 📄 License
 
-MIT © [Your Name]
+MIT © Gautam Ahuja
 
 ## 🤝 Contributing
 
